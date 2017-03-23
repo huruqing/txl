@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title></title>
+	<style media="screen">
+		td,
+		th {
+			text-align: center!important;
+		}
+	</style>
+</head>
+<body class="modal-open">
+	<div class="container">
+		<div class="bs-example" data-example-id="contextual-table">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>编号</th>
+						<th>姓名</th>
+						<th>年龄</th>
+						<th>籍贯</th>
+						<th>操作&nbsp;&nbsp;<a href="http://localhost:8080/index#" id="add">新增</a></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>41</td>
+						<td>huruqing</td>
+						<td>0</td>
+						<td>gx</td>
+						<td>
+							<a href="http://localhost:8080/index#">编辑</a>&nbsp;&nbsp;&nbsp;
+							<a href="http://localhost:8080/index#" class="del" data-id="41">删除</a>
+						</td>
+					</tr>
+
+					<tr>
+						<td>42</td>
+						<td>huruqing</td>
+						<td>0</td>
+						<td>gx</td>
+						<td>
+							<a href="http://localhost:8080/index#">编辑</a>&nbsp;&nbsp;&nbsp;
+							<a href="http://localhost:8080/index#" class="del" data-id="42">删除</a>
+						</td>
+					</tr>
+
+					<tr>
+						<td>43</td>
+						<td>huruqing</td>
+						<td>0</td>
+						<td>gx</td>
+						<td>
+							<a href="http://localhost:8080/index#">编辑</a>&nbsp;&nbsp;&nbsp;
+							<a href="http://localhost:8080/index#" class="del" data-id="43">删除</a>
+						</td>
+					</tr>
+
+					<tr>
+						<td>44</td>
+						<td>huruqing</td>
+						<td>0</td>
+						<td>gx</td>
+						<td>
+							<a href="http://localhost:8080/index#">编辑</a>&nbsp;&nbsp;&nbsp;
+							<a href="http://localhost:8080/index#" class="del" data-id="44">删除</a>
+						</td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="modal fade show" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: block;">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<h4 class="modal-title" id="exampleModalLabel">新增用户</h4>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="recipient-name" class="control-label">用户名:</label>
+							<input type="text" class="form-control" id="username" value="">
+						</div>
+						<div class="form-group">
+							<label for="recipient-name" class="control-label">年龄:</label>
+							<input type="text" class="form-control" id="age">
+						</div>
+						<div class="form-group">
+							<label for="recipient-name" class="control-label">籍贯:</label>
+							<input type="text" class="form-control" id="addr" value="gx">
+						</div>
+						<div class="modal-footer">
+							<button type="reset" class="btn btn-default" data-dismiss="modal">关闭</button>
+							<button id="submit" type="submit" class="btn btn-primary">提交</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-backdrop fade show"></div>
+</body>
+</html>
