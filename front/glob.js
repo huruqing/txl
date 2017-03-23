@@ -12,5 +12,5 @@ for (var i = 0; i < files.length; i++) {
     pathname = path.join(dirname, basename);
     pathname = pathDir ? pathname.replace(new RegExp('^' + pathDir), '') : pathname;
     entries[pathname] = ['./' + entry];
+    console.log(entry);
 }
-console.log(entries);

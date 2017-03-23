@@ -38,17 +38,13 @@ module.exports = {
         // }),
         // 3,提取css 根据entry生成对应的css(如果该js文件使用了css的话)
         new ExtractTextPlugin('css/[name].css'),
-        // 提取公共文件
+        // 4,提取公共文件
         new webpack.optimize.CommonsChunkPlugin({
             name: "vendors",
             filename: 'js/vendors.js',
             chunks: ['index', 'other']
         }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: "vendors2",
-            filename: 'js/vendors2.js',
-            chunks: ['index', 'about']
-        }),
+        // 5,生成html文件
         new HtmlWebpackPlugin({
             template: './src/view/index.html',
             filename: 'index.html',
@@ -59,7 +55,7 @@ module.exports = {
                 collapseWhitespace: false //删除空白符与换行符
             }
         }),
-        // 第二个入口
+        // 生成html文件
         new HtmlWebpackPlugin({ //根据模板插入css/js等生成最终HTML
             favicon: './src/images/favicon.ico', //favicon路径，通过webpack引入同时可以生成hash值
             filename: 'about.html', //生成的html存放路径，相对于path
@@ -72,7 +68,7 @@ module.exports = {
                 collapseWhitespace: false //删除空白符与换行符
             }
         }),
-        // 第三个入口
+        // 生成html文件
         new HtmlWebpackPlugin({ //根据模板插入css/js等生成最终HTML
             favicon: './src/images/favicon.ico', //favicon路径，通过webpack引入同时可以生成hash值
             filename: 'other.html', //生成的html存放路径，相对于path
@@ -85,18 +81,21 @@ module.exports = {
                 collapseWhitespace: false //删除空白符与换行符
             }
         }),
+        // 6,热启动,跟dev-server配合使用
         new webpack.HotModuleReplacementPlugin(),
         new LiveReloadPlugin({
             appendScriptTag: true
         }),
-        //      new webpack.DefinePlugin({
-        //      		"process.env": {
-        //      			NODE_ENV: "dev"
-        //      		}
-        //      })
+        //  new webpack.DefinePlugin({
+        //  		"process.env": {
+        //  			NODE_ENV: "dev"
+        //  		}
+        //  })
     ],
     module: {
-        rules: [{
+        rules: [
+            // 7,配置babel presets: ['env'] 自动配置
+            {
                 test: /\.es$/,
                 exclude: /(node_modules|bower_components)/,
                 loader: 'babel-loader',
@@ -104,6 +103,7 @@ module.exports = {
                     presets: ['env']
                 }
             },
+            // 提取css
             {
                 test: /\.css$/,
                 use: ExtractTextPlugin.extract({
@@ -111,17 +111,7 @@ module.exports = {
                     use: "css-loader"
                 })
             },
-            {　　　　　　
-                test: /\.(png|jpg|jpeg)$/,
-                // loader: 'url-loader?limit=8192'　
-								loader: 'url-loader?limit=8192&name=./images/[hash].[ext]'　　　
-            },
-            {
-                //html模板加载器，可以处理引用的静态资源，默认配置参数attrs=img:src，处理图片的src引用的资源
-                //比如你配置，attrs=img:src img:data-src就可以一并处理data-src引用的资源了，就像下面这样
-                test: /\.html$/,
-                loader: "html-loader?attrs=img:src img:data-src"
-            },
+            // 8,配置less
             {
                 test: /\.less$/,
                 use: ExtractTextPlugin.extract({
@@ -130,12 +120,23 @@ module.exports = {
                     }, {
                         loader: "less-loader"
                     }],
-                    // use style-loader in development
                     fallback: "style-loader"
                 })
+            },
+            {　　　　　　
+                test: /\.(png|jpg|jpeg)$/,
+                // 9,然你引用的图片一起带过去,小图片转为base64
+                loader: 'url-loader?limit=8192&name=./images/[hash].[ext]'　　　
+            },
+            {
+                //html模板加载器，可以处理引用的静态资源，默认配置参数attrs=img:src，处理图片的src引用的资源
+                //比如你配置，attrs=img:src img:data-src就可以一并处理data-src引用的资源了，就像下面这样
+                test: /\.html$/,
+                loader: "html-loader?attrs=img:src img:data-src"
             }
         ]
     },
+    // 10,启动一个开放服务
     devServer: {
         contentBase: './',
         host: 'localhost',

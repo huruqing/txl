@@ -1,3 +1,25 @@
 前端所用知识点:
 0,根据命令执行dev或prod环境的打包,使用better-npm-run进行配置
-1,
+1,压缩css
+2,压缩js
+3,提取css 根据entry生成对应的css(如果该js文件使用了css的话)
+4,提取公共文件
+5,生成html文件
+6,自动刷新页面,跟dev-server配合使用,更better-npm-run有冲突,所以dev的配置里不能使用env配置
+7,配置babel presets: ['env'] 自动配置
+8,配置less
+9,然你引用的图片一起带过去,小图片转为base64
+10,启动一个开放服务
+11,多页面配置,使用glob插件详见github
+12,使用x-tag自定义组件
+
+后台node使用知识:
+1,使用swig模板,koa2需要使用co包一下
+2,配置静态资源
+3,koa-body 解析form表单
+4,supertest测试
+5,补完babel支持es6的拓展包 babel-polyfill
+6,koa2跨域 koa-cors
+7,使用了mvc架构
+8,使用了async await处理异步请求
+9,错误处理中间件
